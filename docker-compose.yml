@@ -1,0 +1,19 @@
+services:
+  meeting-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - ./assets/screenshots:/usr/src/app/assets/screenshots
+      - ./debug-videos:/usr/src/app/debug-videos
+      - /usr/src/app/node_modules  # Persist node_modules
+    command: ["/bin/bash", "./start.sh"]
+
+
+volumes:
+  cache:
